@@ -1,6 +1,9 @@
+// @ts-nocheck
+// import React from 'react'
 import './App.css'
 
 import styled from 'styled-components'
+import GlobalStyles from './styles/GlobalStyles'
 
 const H1 = styled.h1`
   font-size: 30px;
@@ -27,26 +30,29 @@ const Input = styled.input`
   padding: 0.8rem 1.2rem;
 `
 
-const StyledApp = styled.div`
+const StyledApp = styled.main`
   background-color: red;
-  padding 20px
+  padding: 20px;
 `
-
 // const Spacing = styled.spacing`
 //   margin: 0 20px;
 // `
 
 function App() {
   return (
-    <div>
-      <H1> Hello World!</H1>
-      <Button onClick={() => alert('Check in')}>Check in</Button>
-      <StyledApp>
-        <Button onClick={() => alert('Check out')}>Check out</Button>
-      </StyledApp>
+    <>
+      <GlobalStyles>
+        <StyledApp>
+          <H1>The Wild Oasis!</H1>
+          <Button onClick={() => alert('Check in')}>Check in</Button>
 
-      <Input type='number' placeholder='Number of guests' />
-    </div>
+          <Button onClick={() => alert('Check out')}>Check out</Button>
+
+          <Input type='number' placeholder='Number of guests' />
+          <Input type='number' placeholder='Number of guests' />
+        </StyledApp>
+      </GlobalStyles>
+    </>
   )
 }
 
