@@ -1,4 +1,6 @@
-import styled, { css } from "styled-components";
+/* eslint-disable no-unused-vars */
+// @ts-nocheck
+import styled, { css } from 'styled-components'
 
 const sizes = {
   small: css`
@@ -17,9 +19,10 @@ const sizes = {
     font-size: 1.6rem;
     padding: 1.2rem 2.4rem;
     font-weight: 500;
-  `,
-};
+  `
+}
 
+// eslint-disable-next-line no-unused-vars
 const variations = {
   primary: css`
     color: var(--color-brand-50);
@@ -45,5 +48,23 @@ const variations = {
     &:hover {
       background-color: var(--color-red-800);
     }
-  `,
-};
+  `
+}
+
+const Button = styled.button`
+  font-size: 1.4rem;
+  padding: 1.2rem 1.6rem;
+  border: none;
+  border-radius: 7px;
+  background-color: var(--color-brand-600);
+  color: var(--color-brand-50);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+
+  /* hover state */
+  &:hover {
+    background-color: var(--color-brand-700);
+  }
+`
+
+export default Button
