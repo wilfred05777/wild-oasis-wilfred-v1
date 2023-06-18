@@ -1,4 +1,9 @@
-import styled from "styled-components";
+// @ts-nocheck
+/* eslint-disable no-unused-vars */
+
+import styled from 'styled-components'
+import { getCabins } from '../../services/apiCabins'
+import { useQuery } from '@tanstack/react-query'
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -7,7 +12,7 @@ const Table = styled.div`
   background-color: var(--color-grey-0);
   border-radius: 7px;
   overflow: hidden;
-`;
+`
 
 const TableHeader = styled.header`
   display: grid;
@@ -22,4 +27,22 @@ const TableHeader = styled.header`
   font-weight: 600;
   color: var(--color-grey-600);
   padding: 1.6rem 2.4rem;
-`;
+`
+
+function CabinTable() {
+  // const x = useQuery({
+  //   queryKey: ['cabin'],
+  //   queryFn: getCabins
+  // })
+  // console.log(x)
+
+  const { isLoading, data: cabins } = useQuery({
+    queryKey: ['cabin'],
+    queryFn: getCabins
+  })
+
+  if (isLoading) return
+  return <div>Table</div>
+}
+
+export default CabinTable
