@@ -4,7 +4,7 @@
 import styled from 'styled-components'
 import { getCabins } from '../../services/apiCabins'
 import { useQuery } from '@tanstack/react-query'
-import SpinnerMini from '../../ui/SpinnerMini'
+import Spinner from '../../ui/Spinner'
 import CabinRow from './CabinRow'
 
 const Table = styled.div`
@@ -43,7 +43,7 @@ function CabinTable() {
     queryFn: getCabins
   })
 
-  if (isLoading) return <SpinnerMini />
+  if (isLoading) return <Spinner />
   return (
     <Table role='table'>
       <TableHeader role='row'>
