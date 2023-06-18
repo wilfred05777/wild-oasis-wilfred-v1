@@ -19,7 +19,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 1000
+      // https://www.udemy.com/course/the-ultimate-react-course/learn/lecture/38038056#notes explained here at 20:05mins
+      // staleTime: 60 * 1000
+      staleTime: 0
     }
   }
 })
