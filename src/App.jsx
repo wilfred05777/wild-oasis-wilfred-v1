@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
 
 import GlobalStyles from './styles/GlobalStyles'
 
+import FormPage from './pages/FormPage'
 import Dashboard from './pages/Dashboard'
 import Bookings from './pages/Bookings'
 import Cabins from './pages/Cabins'
@@ -43,6 +44,7 @@ function App() {
               <Route path='users' element={<Users />} />
               <Route path='settings' element={<Settings />} />
               <Route path='account' element={<Account />} />
+              <Route path='form-page' element={<FormPage />} />
             </Route>
 
             <Route path='login' element={<Login />} />

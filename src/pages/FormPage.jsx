@@ -3,12 +3,11 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-import Input from '../../ui/Input'
-import Form from '../../ui/Form'
-import Button from '../../ui/Button'
-import FileInput from '../../ui/FileInput'
-import Textarea from '../../ui/Textarea'
-import { useForm } from 'react-hook-form'
+import Input from '../ui/Input'
+import Form from '../ui/Form'
+import Button from '../ui/Button'
+import FileInput from '../ui/FileInput'
+import Textarea from '../ui/Textarea'
 
 const FormRow = styled.div`
   display: grid;
@@ -46,49 +45,32 @@ const Error = styled.span`
   color: var(--color-red-700);
 `
 
-function CreateCabinForm() {
-  const { register, handleSubmit } = useForm()
-
-  function onSubmit(data) {
-    console.log(data)
-    console.log('Successfully created')
-  }
-
+const FormPage = () => {
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form>
       <FormRow>
         <Label htmlFor='name'>Cabin name</Label>
-        <Input type='text' id='name' {...register('name')} />
+        <Input type='text' id='name' />
       </FormRow>
 
       <FormRow>
         <Label htmlFor='maxCapacity'>Maximum capacity</Label>
-        <Input type='number' id='maxCapacity' {...register('maxCapacity')} />
+        <Input type='number' id='maxCapacity' />
       </FormRow>
 
       <FormRow>
         <Label htmlFor='regularPrice'>Regular price</Label>
-        <Input type='number' id='regularPrice' {...register('regularPrice')} />
+        <Input type='number' id='regularPrice' />
       </FormRow>
 
       <FormRow>
         <Label htmlFor='discount'>Discount</Label>
-        <Input
-          type='number'
-          id='discount'
-          defaultValue={0}
-          {...register('discount')}
-        />
+        <Input type='number' id='discount' defaultValue={0} />
       </FormRow>
 
       <FormRow>
         <Label htmlFor='description'>Description for website</Label>
-        <Textarea
-          type='number'
-          id='description'
-          defaultValue=''
-          {...register('description')}
-        />
+        <Textarea type='number' id='description' defaultValue='' />
       </FormRow>
 
       <FormRow>
@@ -101,10 +83,10 @@ function CreateCabinForm() {
         <Button variation='secondary' type='reset'>
           Cancel
         </Button>
-        <Button>Add Cabin</Button>
+        <Button>Edit cabin</Button>
       </FormRow>
     </Form>
   )
 }
 
-export default CreateCabinForm
+export default FormPage

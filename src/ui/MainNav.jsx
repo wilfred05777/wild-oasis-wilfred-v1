@@ -10,6 +10,7 @@ import {
   HiOutlineHome,
   HiOutlineHomeModern,
   HiOutlineUsers
+  // RiFilePaper2Line
 } from 'react-icons/hi2'
 
 const NavList = styled.ul`
@@ -94,6 +95,12 @@ function MainNav() {
           </StyledNavLink>
         </li>
 
+        <li>
+          <StyledNavLink to='/form-page'>
+            <HiOutlineCog6Tooth />
+            <span>Form Page testing</span>
+          </StyledNavLink>
+        </li>
         {/* <li>
           <StyledNavLink to='/cabins'>
             <HiOutlineHomeModern />
