@@ -74,9 +74,10 @@ function CreateCabinForm() {
   })
 
   function onSubmit(data) {
-    // console.log(data)
+    console.log(data)
     // console.log('Successfully created')
-    mutate(data)
+    mutate({ ...data, image: data.image.at(0) }) // MODIFIED object creation
+    // mutate(data) /OLD VERS
   }
 
   function onError(error) {
@@ -148,7 +149,7 @@ function CreateCabinForm() {
           disabled={isCreating}
           defaultValue={0}
           {...register('discount', {
-            required: 'This filed is required',
+            required: 'This field is required',
             validate: (value) =>
               value <= getValues().regularPrice ||
               'Discount should be less than the regular price'
@@ -170,7 +171,7 @@ function CreateCabinForm() {
           defaultValue=''
           disabled={isCreating}
           {...register('description', {
-            required: 'This filed is required'
+            required: 'This field is required'
           })}
         />
         {/* {errors?.description?.message && (
@@ -180,7 +181,14 @@ function CreateCabinForm() {
 
       <FormRow label='Cabin photo'>
         {/* <Label htmlFor='image'>Cabin photo</Label> */}
-        <FileInput id='image' accept='image/*' />
+        <FileInput
+          id='image'
+          accept='image/*'
+          type='file'
+          {...register('image', {
+            required: 'This field is required'
+          })}
+        />
       </FormRow>
 
       <FormRow>
