@@ -76,7 +76,8 @@ function CreateCabinForm() {
   function onSubmit(data) {
     console.log(data)
     // console.log('Successfully created')
-    mutate({ ...data, image: data.image.at(0) }) // MODIFIED object creation
+    // mutate({ ...data, image: data.image.at(0) }) // MODIFIED object creation
+    mutate({ ...data, image: data.image[0] }) // MODIFIED object creation
     // mutate(data) /OLD VERS
   }
 
