@@ -53,12 +53,12 @@ import { createCabin } from '../../services/apiCabins'
 // `
 
 function CreateCabinForm() {
-  const queryClient = useQueryClient()
-
   const { register, handleSubmit, reset, getValues, formState } = useForm()
 
   const { errors } = formState
   console.log(errors)
+
+  const queryClient = useQueryClient()
 
   const { mutate, isLoading: isCreating } = useMutation({
     // mutationFn: newCabin => createCabin,
@@ -74,10 +74,10 @@ function CreateCabinForm() {
   })
 
   function onSubmit(data) {
-    console.log(data)
-    // console.log('Successfully created')
-    // mutate({ ...data, image: data.image.at(0) }) // MODIFIED object creation
     mutate({ ...data, image: data.image[0] }) // MODIFIED object creation
+    // mutate({ ...data, image: data.image.at(0) }) // MODIFIED object creation
+    // console.log(data)
+    // console.log('Successfully created')
     // mutate(data) /OLD VERS
   }
 
