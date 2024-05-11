@@ -108,7 +108,7 @@ function CabinRow({ cabin }) {
         {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
         <div>
 
-          <button>
+          <button disabled={isCreating} onClick={handleDuplicate}>
             <HiSquare2Stack/>
           </button>
           <button onClick={() => setShowForm((show) => !show)}>
