@@ -13,7 +13,7 @@ function UpdateSettingsForm() {
     settings: {
       minBookingLength,
       maxBookingLength,
-      maxGuestsPerBooking,
+      maxGuestPerBooking,
       breakfastPrice,
     } = {},
   } = useSettings();
@@ -53,7 +53,7 @@ function UpdateSettingsForm() {
       <FormRow label='Maximum guests/booking'>
         <Input
           type='number'
-          defaultValue={maxGuestsPerBooking}
+          defaultValue={maxGuestPerBooking}
           // onBlur={(e) => handleBlur(e, 'maxGuestsPerBooking')}
           // disabled={isUpdating}
           id='max-guests'
