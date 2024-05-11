@@ -90,6 +90,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
      */
 
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
+
       <FormRow label='Cabin name' error={errors?.name?.message}>
         <Input
           type='text'
@@ -150,7 +151,6 @@ function CreateCabinForm({ cabinToEdit = {} }) {
       <FormRow
         label='Description for website'
         disabled={isWorking}
-        error={errors?.description?.message}
       >
         <Textarea
           type='number'
