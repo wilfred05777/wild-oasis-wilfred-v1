@@ -2,7 +2,7 @@
 // /* eslint-disable react/jsx-no-undef */
 // @ts-nocheck
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 
@@ -17,6 +17,7 @@ import { useForm } from 'react-hook-form'
 import { createEditCabin } from '../../services/apiCabins'
 
 function CreateCabinForm({ cabinToEdit = {} }) {
+  const [showForm, setShowForm] = useState(false)
   
   const { id: editId, ...editValues } = cabinToEdit
   const isEditSession = Boolean(editId)
@@ -178,6 +179,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         <Button variation='secondary' type='reset'>
           Cancel
         </Button>
+        {/* <Button variation='secondary'  onClick={() => setShowForm((show) => !show)}>Cancel</Button> */}
         <Button disabled={isWorking}>
           {isEditSession ? 'Edit Cabin' : 'Create New Cabin'}
         </Button>
