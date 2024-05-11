@@ -14,6 +14,7 @@ import React from 'react'
 
 import { deleteCabin } from '../../services/apiCabins'
 import { useDeleteCabin } from './useDeleteCabin'
+import { useCreateCabin } from './useCreateCabin';
 
 const TableRow = styled.div`
   display: grid;
@@ -56,6 +57,8 @@ const Discount = styled.div`
 
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false)
+  const { isDeleting, deleteCabin} = useDeleteCabin()
+  const { isCreating, createCabin } = useCreateCabin();
 
   const {
     id: cabinId,
@@ -63,12 +66,22 @@ function CabinRow({ cabin }) {
     maxCapacity,
     regularPrice,
     discount,
-    image
+    image,
+    description
   } = cabin
 
-  const queryClient = useQueryClient()
+  function handleDuplicate() {
+    createCabin({ 
+      name: `Copy of ${name}`,
+      maxCapacity, regularPrice, discount, image, description
+    })
+  }
 
-  const { isDeleting, deleteCabin} = useDeleteCabin()
+  
+
+  // const queryClient = useQueryClient()
+
+  // const { isDeleting, deleteCabin} = useDeleteCabin()
 
   // const { isLoading: isDeleting, mutate } = useMutation({
   //   // mutationFn: (id) => deleteCabin(id)
