@@ -6,7 +6,6 @@ import { useState } from 'react'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
-import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
 
 import { formatCurrency } from '../../utils/helpers'
 import CreateCabinForm from './CreateCabinForm'
@@ -95,15 +94,11 @@ function CabinRow({ cabin }) {
         {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
         <div>
 
-          <button>
-            <HiSquare2Stack/>
-          </button>
-          <button onClick={() => setShowForm((show) => !show)}>
-            <HiPencil/>
-          </button>
+          <button onClick={() => setShowForm((show) => !show)}>Edit</button>
+          <button onClick={() => setShowForm((show) => !show)}>Edit</button>
           {/* <button onClick={() => mutate(cabinId)} disabled={isDeleting}> */}
           <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}>
-            <HiTrash/>
+            Delete
           </button>
         </div>
       </TableRow>
