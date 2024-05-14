@@ -23,22 +23,22 @@ import { createEditCabin } from '../../services/apiCabins'
 
 function CreateCabinForm({ cabinToEdit = {} }) {
   const [showForm, setShowForm] = useState(false)
-  
+
   const { id: editId, ...editValues } = cabinToEdit
   const isEditSession = Boolean(editId)
 
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: isEditSession ? editValues : {}
   })
-  
+
   /**
    *  CREATE NEW CABIN API INSERT HERE
   */
   const { errors } = formState
   // console.log(errors)
 
-  const { isCreating,  createCabin } = useCreateCabin()
-  
+  const { isCreating, createCabin } = useCreateCabin()
+
   // const queryClient = useQueryClient()
 
   // const { mutate: createCabin , isLoading: isCreating } = useMutation({
@@ -83,24 +83,24 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
     const image = typeof data.image === 'string' ? data.image : data.image[0]
 
-    if(isEditSession) 
+    if (isEditSession)
       editCabin(
-      { newCabinData: {...data, image }, id: editId },
+        { newCabinData: { ...data, image }, id: editId },
         {
           onSuccess: (data) => {
+            reset()
+          }
+        }
+      );
+    else createCabin(
+      { ...data, image: image },
+      {
+        onSuccess: (data) => {
+          // console.log(data);
           reset()
         }
       }
-    );
-    else createCabin(
-      {...data, image: image }, 
-      {
-        onSuccess: (data) => {
-        // console.log(data);
-        reset()
-      }
-    }
-  )
+    )
 
   }
 

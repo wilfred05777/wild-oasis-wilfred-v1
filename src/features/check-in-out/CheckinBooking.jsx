@@ -31,7 +31,7 @@ function CheckinBooking() {
     numNights,
   } = booking;
 
-  function handleCheckin() {}
+  function handleCheckin() { }
 
   return (
     <>

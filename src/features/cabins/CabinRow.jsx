@@ -57,7 +57,7 @@ const Discount = styled.div`
 
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false)
-  const { isDeleting, deleteCabin} = useDeleteCabin()
+  const { isDeleting, deleteCabin } = useDeleteCabin()
   const { isCreating, createCabin } = useCreateCabin();
 
   const {
@@ -71,13 +71,13 @@ function CabinRow({ cabin }) {
   } = cabin
 
   function handleDuplicate() {
-    createCabin({ 
+    createCabin({
       name: `Copy of ${name}`,
       maxCapacity, regularPrice, discount, image, description
     })
   }
 
-  
+
 
   // const queryClient = useQueryClient()
 
@@ -109,14 +109,14 @@ function CabinRow({ cabin }) {
         <div>
 
           <button disabled={isCreating} onClick={handleDuplicate}>
-            <HiSquare2Stack/>
+            <HiSquare2Stack />
           </button>
           <button onClick={() => setShowForm((show) => !show)}>
-            <HiPencil/>
+            <HiPencil />
           </button>
           {/* <button onClick={() => mutate(cabinId)} disabled={isDeleting}> */}
           <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}>
-            <HiTrash/>
+            <HiTrash />
           </button>
         </div>
       </TableRow>

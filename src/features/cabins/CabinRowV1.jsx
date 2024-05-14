@@ -67,7 +67,7 @@ function CabinRow({ cabin }) {
 
   const queryClient = useQueryClient()
 
-  const { isDeleting, deleteCabin} = useDeleteCabin()
+  const { isDeleting, deleteCabin } = useDeleteCabin()
 
   // const { isLoading: isDeleting, mutate } = useMutation({
   //   // mutationFn: (id) => deleteCabin(id)
