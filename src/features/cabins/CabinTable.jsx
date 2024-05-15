@@ -9,6 +9,7 @@ import { getCabins } from '../../services/apiCabins'
 import { useQuery } from '@tanstack/react-query'
 
 import { useCabin } from './useCabins'
+import { useSearchParams } from 'react-router-dom'
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -38,7 +39,13 @@ function CabinTable() {
 
   const { isLoading, cabins, error } = useCabin()
 
+  const [searchParams] = useSearchParams();
+
   if (isLoading) return <Spinner />
+
+  const filterValue = searchParams.get("discount") || "all";
+  // console.log(filterValue)
+
   return (
     <Table role='table'>
       <TableHeader role='row'>
