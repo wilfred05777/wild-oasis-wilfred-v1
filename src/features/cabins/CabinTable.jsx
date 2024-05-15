@@ -44,7 +44,16 @@ function CabinTable() {
   if (isLoading) return <Spinner />
 
   const filterValue = searchParams.get("discount") || "all";
-  // console.log(filterValue)
+  console.log(filterValue)
+
+  let filteredCabins;
+  if (filterValue === "all") filteredCabins = cabins;
+
+  if (filterValue === "no-discount")
+    filteredCabins = cabins.filter((cabins) => cabins.discount === 0);
+
+  if (filterValue === "with-discount")
+    filteredCabins = cabins.filter((cabins) => cabins.discount > 0);
 
   return (
     <Table role='table'>
