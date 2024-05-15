@@ -4,12 +4,18 @@
 import styled from 'styled-components'
 import Spinner from '../../ui/Spinner'
 import CabinRow from './CabinRow'
+import Menus from "../../ui/Menus";
+import Empty from "../../ui/Empty";
+
+
 
 import { getCabins } from '../../services/apiCabins'
 import { useQuery } from '@tanstack/react-query'
 
 import { useCabin } from './useCabins'
 import { useSearchParams } from 'react-router-dom'
+
+// import Table from "../../ui/Table";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -56,7 +62,7 @@ function CabinTable() {
     filteredCabins = cabins.filter((cabins) => cabins.discount > 0);
 
   return (
-    <Table role='table'>
+    <Menus role='table'>
       <TableHeader role='row'>
         <div></div>
         <div>Cabin</div>
@@ -66,10 +72,11 @@ function CabinTable() {
         <div></div>
       </TableHeader>
 
+      {/* <Table.Body /> */}
       {cabins.map((cabin) => (
         <CabinRow cabin={cabin} key={cabin.id} />
       ))}
-    </Table>
+    </Menus>
   )
 }
 
