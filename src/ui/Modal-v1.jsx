@@ -1,7 +1,5 @@
-/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
@@ -55,52 +53,21 @@ const Button = styled.button`
   }
 `;
 
-// step 1:
-const ModalContext = createContext();
 
-// step 2:
-function Modal({ children}) {
-  const [openName, setOpenName] = useState('');
-  
-  const close = () => setOpenName("");
-  const open = setOpenName;
-
-  return(
-    <ModalContext.Provider
-    value={{ openName, close }}
-    >
-      {children}
-    </ModalContext.Provider>
-)}
-
-function Open({ children, opens: opensWindowName }) {
-  const { open } = useContext(ModalContext);
-
-  return cloneElement(children, { onClick: () => open(opensWindowName) })
-  // return children;
-
-}
-
-function Window({ children, name, onClose }) {
-  // adding this features from react-dom in this case makes the modal leave outside the parent elemen upon displaying in browser's DOM but in react component it is still under/inside its parent element which is the addCabin component
+function Modal({ children, onClose }) {
+  // adding this features from react-dom in this case makes the modal leave outside the parent elemen upon displaying in browser's DOM but in react component it is still under/inside its parent element which is the addCabin component 
   // - acts as invisible tunnel/portal
   // - why do we used it, to avoid overflow in css property when somebody will re-used it
-
-  const { openName, close } = useContext(ModalContext);
-  
-  if (name !== openName) return null;
-  
   return createPortal(
     <Overlay>
       <StyledModal>
         {/* Modal */}
 
-        <Button onClick={close} >
+        <Button onClick={onClose} >
           <HiXMark />
         </Button>
         <div>
-          {/* {children} */}
-          {cloneElement(children, {onCloseModal:close})}
+          {children}
         </div>
       </StyledModal>
     </Overlay>,
@@ -109,8 +76,4 @@ function Window({ children, name, onClose }) {
   )
 }
 
-// step 4:
-Modal.Open = Open;
-Modal.Window = Window;
-
-export default Modal;
+export default Modal
