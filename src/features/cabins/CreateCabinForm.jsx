@@ -21,7 +21,7 @@ import { createEditCabin } from '../../services/apiCabins'
 
 
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const [showForm, setShowForm] = useState(false)
 
   const { id: editId, ...editValues } = cabinToEdit
@@ -97,7 +97,8 @@ function CreateCabinForm({ cabinToEdit = {} }) {
       {
         onSuccess: (data) => {
           // console.log(data);
-          reset()
+          reset();
+          onCloseModal?.();
         }
       }
     )
@@ -201,7 +202,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation='secondary' type='reset'>
+        <Button
+          variation='secondary'
+          type='reset'
+          onClick={() => onCloseModal?.()}
+        >
           Cancel
         </Button>
         {/* <Button variation='secondary'  onClick={() => setShowForm((show) => !show)}>Cancel</Button> */}

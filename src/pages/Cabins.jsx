@@ -10,9 +10,10 @@ import CabinTable from '../features/cabins/CabinTable'
 import Button from '../ui/Button'
 import CreateCabinForm from '../features/cabins/CreateCabinForm'
 import CabinTableOperations from '../features/cabins/CabinTableOperations'
+import AddCabin from '../features/cabins/AddCabin'
 
 function Cabins() {
-  const [showForm, setShowForm] = useState(false)
+  // const [showForm, setShowForm] = useState(false)
 
   // useEffect(function () {
   //   getCabins().then((data) => console.log(data))
@@ -30,11 +31,13 @@ function Cabins() {
       <Row>
         <CabinTable />
 
+        <AddCabin />
+
         {/* temporary */}
-        <Button onClick={() => setShowForm((show) => !show)}>
+        {/* <Button onClick={() => setShowForm((show) => !show)}>
           Add new cabin
         </Button>
-        {showForm && <CreateCabinForm />}
+        {showForm && <CreateCabinForm />} */}
       </Row>
     </>
   )
