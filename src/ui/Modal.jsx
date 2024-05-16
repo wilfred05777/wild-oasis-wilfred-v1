@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 
@@ -54,7 +55,10 @@ const Button = styled.button`
 
 
 function Modal({ children, onClose }) {
-  return (
+  // adding this features from react-dom in this case makes the modal leave outside the parent elemen upon displaying in browser's DOM but in react component it is still under/inside its parent element which is the addCabin component 
+  // - acts as invisible tunnel/portal
+  // - why do we used it, to avoid overflow in css property when somebody will re-used it
+  return createPortal(
     <Overlay>
       <StyledModal>
         {/* Modal */}
@@ -66,7 +70,9 @@ function Modal({ children, onClose }) {
           {children}
         </div>
       </StyledModal>
-    </Overlay>
+    </Overlay>,
+    document.body
+    // document.querySelector
   )
 }
 
