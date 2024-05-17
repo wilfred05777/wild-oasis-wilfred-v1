@@ -5,6 +5,7 @@ import { cloneElement, createContext, useContext, useEffect, useRef, useState } 
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
+import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -87,29 +88,36 @@ function Window({ children, name, onClose }) {
   // - why do we used it, to avoid overflow in css property when somebody will re-used it
   const { openName, close } = useContext(ModalContext);
 
-  const ref = useRef();
-  
-  useEffect(
-      function () {
-        function handleClick(e) {
-        //                       modal in DOM
-          if(ref.current && !ref.current.contains(e.target)) 
-          {
-            console.log("click outside")
-            close();
-          }
-        }
+  // injected custom hook from hooks/useOutsideClick.js
+  const ref = useOutsideClick(close);
 
-      // document.addEventListener("click", handleClick) fundamental knowledge of javascript in 2nd section.
-      document.addEventListener("click", handleClick, true)
+  /**
+   * this below code is refactor in hooks/useOutsideClick.js
+   * soon to remove next push
+  /
+  // const ref = useRef();
+  // useEffect(
+  //     function () {
+  //       function handleClick(e) {
+  //       //                       modal in DOM
+  //         if(ref.current && !ref.current.contains(e.target)) 
+  //         {
+  //           console.log("click outside")
+  //           close();
+  //         }
+  //       }
 
-      /*
-      *  
-      */
-      return () => document.removeEventListener("click", handleClick, true)
-    }, 
-    [close] 
-  )
+  //     // document.addEventListener("click", handleClick) fundamental knowledge of javascript in 2nd section.
+  //     document.addEventListener("click", handleClick, true)
+
+  //     /*
+  //     *  
+  //     */
+  //     return () => document.removeEventListener("click", handleClick, true)
+  //   }, 
+  //   [close] 
+  // )
+ 
 
   if (name !== openName) return null;
 
