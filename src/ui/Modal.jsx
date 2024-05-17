@@ -107,7 +107,8 @@ function Window({ children, name, onClose }) {
   //         }
   //       }
 
-  //     // document.addEventListener("click", handleClick) fundamental knowledge of javascript in 2nd section.
+  //     // document.addEventListener("click", handleClick) fundamental knowledge of javascript // document.addEventListener("click", handleClick) fundamental knowledge of javascript in how react work behind the scene : section 11
+https://www.udemy.com/course/the-ultimate-react-course/learn/lecture/37350760#notes..
   //     document.addEventListener("click", handleClick, true)
 
   //     /*
