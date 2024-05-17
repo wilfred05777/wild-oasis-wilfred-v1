@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { cloneElement, createContext, useContext, useState } from "react";
+import { cloneElement, createContext, useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
@@ -82,17 +82,40 @@ function Open({ children, opens: opensWindowName }) {
 }
 
 function Window({ children, name, onClose }) {
-  // adding this features from react-dom in this case makes the modal leave outside the parent elemen upon displaying in browser's DOM but in react component it is still under/inside its parent element which is the addCabin component
+  // adding this features from react-dom in this case makes the modal leave outside the parent element upon displaying in browser's DOM but in react component it is still under/inside its parent element which is the addCabin component
   // - acts as invisible tunnel/portal
   // - why do we used it, to avoid overflow in css property when somebody will re-used it
-
   const { openName, close } = useContext(ModalContext);
+
+  const ref = useRef();
   
+  useEffect(
+      function () {
+        function handleClick(e) {
+        //                       modal in DOM
+          if(ref.current && !ref.current.contains(e.target)) 
+          {
+            console.log("click outside")
+            close();
+          }
+        }
+
+      // document.addEventListener("click", handleClick) fundamental knowledge of javascript in 2nd section.
+      document.addEventListener("click", handleClick, true)
+
+      /*
+      *  
+      */
+      return () => document.removeEventListener("click", handleClick, true)
+    }, 
+    [close] 
+  )
+
   if (name !== openName) return null;
-  
+
   return createPortal(
     <Overlay>
-      <StyledModal>
+      <StyledModal ref={ref}>
         {/* Modal */}
 
         <Button onClick={close} >
