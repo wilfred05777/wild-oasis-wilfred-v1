@@ -67,9 +67,7 @@ function Modal({ children}) {
   const open = setOpenName;
 
   return(
-    <ModalContext.Provider
-    value={{ openName, close, open }}
-    >
+    <ModalContext.Provider value={{ openName, close, open }}>
       {children}
     </ModalContext.Provider>
 )}
@@ -130,6 +128,8 @@ https://www.udemy.com/course/the-ultimate-react-course/learn/lecture/37350760#no
         <Button onClick={close} >
           <HiXMark />
         </Button>
+
+        
         <div>
           {/* {children} */}
           {cloneElement(children, { onCloseModal:close })}

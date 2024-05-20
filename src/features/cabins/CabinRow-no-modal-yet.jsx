@@ -16,11 +16,6 @@ import { deleteCabin } from '../../services/apiCabins'
 import { useDeleteCabin } from './useDeleteCabin'
 import { useCreateCabin } from './useCreateCabin';
 
-import Modal from '../../ui/Modal';
-import ConfirmDelete from '../../ui/ConfirmDelete';
-
-
-
 const TableRow = styled.div`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
@@ -82,8 +77,29 @@ function CabinRow({ cabin }) {
     })
   }
 
+
+
+  // const queryClient = useQueryClient()
+
+  // const { isDeleting, deleteCabin} = useDeleteCabin()
+
+  // const { isLoading: isDeleting, mutate } = useMutation({
+  //   // mutationFn: (id) => deleteCabin(id)
+  //   mutationFn: deleteCabin,
+  //   onSuccess: () => {
+  //     // alert('Cabin successfully deleted')
+  //     toast.success('Cabin successfully deleted')
+
+  //     queryClient.invalidateQueries({
+  //       queryKey: ['cabins']
+  //     })
+  //   },
+  //   // onError: (err) => alert(err.message)
+  //   onError: (err) => toast.error(err.message)
+  // })
+
   return (
-  
+    <>
       <TableRow role='row'>
         <Img src={image} />
         <Cabin>{name}</Cabin>
@@ -95,34 +111,17 @@ function CabinRow({ cabin }) {
           <button disabled={isCreating} onClick={handleDuplicate}>
             <HiSquare2Stack />
           </button>
-
-          <Modal>
-            <Modal.Open opens="edit">
-              <button>
-                <HiPencil />
-              </button>
-            </Modal.Open>
-          <Modal.Window name="edit">
-              <CreateCabinForm cabinToEdit={cabin} />
-          </Modal.Window>
-          
-          
-          <Modal.Open >
-            <button >
-              <HiTrash />
-            </button>
-          </Modal.Open>
-          <Modal.Window >
-            <ConfirmDelete
-              resourceName='cabins'
-              disabled={isDeleting}
-              onConfirm={() => deleteCabin(cabinId)}
-            />
-          </Modal.Window>
-
-          </Modal>  
+          <button onClick={() => setShowForm((show) => !show)}>
+            <HiPencil />
+          </button>
+          {/* <button onClick={() => mutate(cabinId)} disabled={isDeleting}> */}
+          <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}>
+            <HiTrash />
+          </button>
         </div>
       </TableRow>
+      {showForm && <CreateCabinForm cabinToEdit={cabin} />}
+    </>
   )
 }
 
