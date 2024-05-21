@@ -98,43 +98,39 @@ function CabinRow({ cabin }) {
         </button> */}
 
         <Modal>
-          <Modal.Open opens="edit">
-            <button>
-              <HiPencil />
-            </button>
-          </Modal.Open>
-          <Modal.Window name="edit">
-            <CreateCabinForm cabinToEdit={cabin} />
-          </Modal.Window>
 
+          <Menus.Menu>
 
-          <Modal.Open >
-            <button >
-              <HiTrash />
-            </button>
-          </Modal.Open>
-          <Modal.Window >
+            <Menus.Toggle id={cabinId} />
+            
+            <Menus.List id={cabinId}>
+              {/*  add icon & onClick at Menus.sjx-> function Button({ children, icon, onClick }) { */}
+              <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>Duplicate</Menus.Button>
+
+             <Modal.Open opens="edit">
+              <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+            </Modal.Open>
+
+            <Modal.Open >
+            <Menus.Button icon={<HiTrash />} >Delete</Menus.Button>
+            </Modal.Open>
+            
+            </Menus.List>
+
+            <Modal.Window name="edit">
+              <CreateCabinForm cabinToEdit={cabin} />
+            </Modal.Window>
+
+            <Modal.Window >
             <ConfirmDelete
               resourceName='cabins'
               disabled={isDeleting}
               onConfirm={() => deleteCabin(cabinId)}
             />
-          </Modal.Window>
-
-        </Modal>
-
-        <Menus.Menu>
-          <Menus.Toggle id={cabinId}/>
-          <Menus.List id={cabinId}>
-            {/*  add icon & onClick at Menus.sjx-> function Button({ children, icon, onClick }) { */}
-            <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>Duplicate</Menus.Button>
-
-            <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
-
-            <Menus.Button icon={<HiTrash />} >Delete</Menus.Button>
+            </Modal.Window>
             
-          </Menus.List>
         </Menus.Menu>
+        </Modal> 
       </div>
     </Table.Row>
   )
