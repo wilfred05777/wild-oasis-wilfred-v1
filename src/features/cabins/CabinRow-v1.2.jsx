@@ -93,9 +93,9 @@ function CabinRow({ cabin }) {
       {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
       <div>
 
-        {/* <button disabled={isCreating} onClick={handleDuplicate}>
+        <button disabled={isCreating} onClick={handleDuplicate}>
           <HiSquare2Stack />
-        </button> */}
+        </button>
 
         <Modal>
           <Modal.Open opens="edit">
@@ -122,19 +122,6 @@ function CabinRow({ cabin }) {
           </Modal.Window>
 
         </Modal>
-
-        <Menus.Menu>
-          <Menus.Toggle id={cabinId}/>
-          <Menus.List id={cabinId}>
-            {/*  add icon & onClick at Menus.sjx-> function Button({ children, icon, onClick }) { */}
-            <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>Duplicate</Menus.Button>
-
-            <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
-
-            <Menus.Button icon={<HiTrash />} >Delete</Menus.Button>
-            
-          </Menus.List>
-        </Menus.Menu>
       </div>
     </Table.Row>
   )

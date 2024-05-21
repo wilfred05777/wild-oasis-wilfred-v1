@@ -5,6 +5,7 @@ import { HiEllipsisVertical } from "react-icons/hi2";
 import styled from "styled-components";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
+// const StyledMenu = styled.div`
 const Menu = styled.div`
   display: flex;
   align-items: center;
@@ -66,10 +67,13 @@ const StyledButton = styled.button`
   }
 `;
 
+// wala ko kasabot sa katayuan aning MenuContext kanus-a ni gamiton
 const MenusContext = createContext();
 
 function Menus({ children }) {
   const [openId, setOpenId] = useState("");
+
+  // store it in parent state 1
   const [position, setPosition] = useState(null);
 
   const close = () => setOpenId("");
@@ -77,6 +81,7 @@ function Menus({ children }) {
 
   return (
     <MenusContext.Provider
+      // 2 position, setPosition
       value={{ openId, close, open, position, setPosition }}
     >
       {children}
@@ -85,10 +90,15 @@ function Menus({ children }) {
 }
 
 function Toggle({ id }) {
+  // 3 setPostion
   const { openId, close, open, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
+    // getBoundingClientRect - it's a DOM function, give data elements position
     const rect = e.target.closest("button").getBoundingClientRect();
+    // console.log(rect);
+
+    // 4 set position 
     setPosition({
       x: window.innerWidth - rect.width - rect.x,
       y: rect.y + rect.height + 8,
@@ -105,12 +115,17 @@ function Toggle({ id }) {
 }
 
 function List({ id, children }) {
-  const { openId, position, close } = useContext(MenusContext);
+//  5 add position
+  const { openId, close, position } = useContext(MenusContext);
+
+  // clicking outside of the element will close the ... vertical
   const ref = useOutsideClick(close);
 
   if (openId !== id) return null;
 
   return createPortal(
+    // 6 position={position}
+    // <StyledList position={{ x: 20, y: 20 }} ref={ref}>
     <StyledList position={position} ref={ref}>
       {children}
     </StyledList>,
@@ -118,17 +133,24 @@ function List({ id, children }) {
   );
 }
 
+//  adding icon & onClick caller
 function Button({ children, icon, onClick }) {
+
+  // get from the context useContext
   const { close } = useContext(MenusContext);
 
+  // define handleClick
   function handleClick() {
+    // optional-Chaining what is the purpose of it? and how it works behind the scene?
     onClick?.();
-    close();
+    close(); // close menu get from the context which is the useContext
   }
 
   return (
     <li>
+      {/* onClick={handleClick} */}
       <StyledButton onClick={handleClick}>
+        {/* placing {icon} */}
         {icon}
         <span>{children}</span>
       </StyledButton>
