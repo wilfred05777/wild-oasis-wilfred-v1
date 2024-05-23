@@ -51,7 +51,7 @@ function CabinTable() {
   if (isLoading) return <Spinner />
 
   const filterValue = searchParams.get("discount") || "all";
-  // console.log(filterValue)
+  console.log(filterValue)
 
   let filteredCabins;
   if (filterValue === "all") filteredCabins = cabins;
@@ -74,7 +74,10 @@ function CabinTable() {
         <div></div>
       </Table.Header>
 
-      <Table.Body data={cabins} render={(cabin) => (
+      <Table.Body 
+        // data={cabins} 
+        data={filteredCabins} 
+        render={(cabin) => (
         <CabinRow cabin={cabin} key={cabin.id} />
       )}/>
       {

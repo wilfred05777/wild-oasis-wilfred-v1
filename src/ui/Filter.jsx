@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
+
 import { useSearchParams } from "react-router-dom";
 import styled, { css } from "styled-components";
 
@@ -35,23 +38,47 @@ const FilterButton = styled.button`
   }
 `;
 
-
-function Filter() {
+function Filter({ filterField, options }) {
 
   const [searchParams, setSearchParams] = useSearchParams();
-  // const currentFilter = searchParams.get(filtereField) || options.at(0).value;
+  // const currentFilter = searchParams.get(filterField) || options.at(0).value;
+  useSearchParams();
 
+  const currentFilter = searchParams.get(filterField) || options.at(0).value;
+  
   function handleClick(value) {
-    searchParams.set('discount', value)
+    // searchParams.set('discount', value);
+    searchParams.set(filterField, value);
     setSearchParams(searchParams)
-    console.log()
+  // console.log()
+  
   }
+
+  
   return (
     <StyledFilter>
 
-      <FilterButton onClick={() => handleClick("all")}>All</FilterButton>
-      <FilterButton onClick={() => handleClick("no-discount")}>No Discount</FilterButton>
-      <FilterButton onClick={() => handleClick("with-discount")}>With Discount</FilterButton>
+      {options.map((option )=> (
+          
+        <FilterButton
+          key={option.value}
+          onClick={() => handleClick(option.value)}
+          active={option.value === currentFilter}
+        >
+          {option.label}
+        </FilterButton>
+        
+      ))}
+      
+      
+      {/* <FilterButton onClick={() => handleClick("all")}>All</FilterButton> */}
+      {/* <FilterButton
+        onClick={() => handleClick("no-discount")}
+      >No Discount
+      </FilterButton>
+      <FilterButton
+        onClick={() => handleClick("with-discount")}
+      >With Discount</FilterButton> */}
 
 
       {/* <FilterButton
