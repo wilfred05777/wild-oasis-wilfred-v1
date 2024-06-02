@@ -45,32 +45,33 @@ function Filter({ filterField, options }) {
   useSearchParams();
 
   const currentFilter = searchParams.get(filterField) || options.at(0).value;
-  
+
   function handleClick(value) {
     // searchParams.set('discount', value);
     searchParams.set(filterField, value);
     setSearchParams(searchParams)
-  // console.log()
-  
+    // console.log()
+
   }
 
-  
+
   return (
     <StyledFilter>
 
-      {options.map((option )=> (
-          
+      {options.map((option) => (
+
         <FilterButton
           key={option.value}
           onClick={() => handleClick(option.value)}
           active={option.value === currentFilter}
+          disabled={option.value === currentFilter}
         >
           {option.label}
         </FilterButton>
-        
+
       ))}
-      
-      
+
+
       {/* <FilterButton onClick={() => handleClick("all")}>All</FilterButton> */}
       {/* <FilterButton
         onClick={() => handleClick("no-discount")}
