@@ -95,12 +95,13 @@ function MainNav() {
           </StyledNavLink>
         </li>
 
-        <li>
+        {/* <li>
           <StyledNavLink to='/form-page'>
             <HiOutlineCog6Tooth />
             <span>Form Page testing</span>
           </StyledNavLink>
-        </li>
+        </li> */}
+        
         {/* <li>
           <StyledNavLink to='/cabins'>
             <HiOutlineHomeModern />

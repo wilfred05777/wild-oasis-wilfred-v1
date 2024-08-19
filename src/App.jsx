@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // @ts-nocheck
 
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
