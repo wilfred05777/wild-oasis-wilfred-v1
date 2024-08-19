@@ -13,6 +13,7 @@ export async function getBookings() {
     .select(
       "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)"
     );
+    // .select("*")
 
   // const { data, error } = await supabase
   //   .from("bookings")
