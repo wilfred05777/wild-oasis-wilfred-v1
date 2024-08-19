@@ -57,7 +57,7 @@ function BookingRow({
     numGuests,
     totalPrice,
     status,
-    guests: { fullName: guestName, email },
+    guests: { fullName: guestName, email }, // check refactor of this section what module
     cabins: { name: cabinName },
   },
 }) {
@@ -93,7 +93,7 @@ function BookingRow({
 
       <Amount>{formatCurrency(totalPrice)}</Amount>
 
-      <Modal>
+      {/* <Modal>
         <Menus.Menu>
           <Menus.Toggle id={bookingId} />
           <Menus.List id={bookingId}>
@@ -105,7 +105,7 @@ function BookingRow({
             </Menus.Button>
           </Menus.List>
         </Menus.Menu>
-      </Modal>
+      </Modal> */}
     </Table.Row>
   );
 }

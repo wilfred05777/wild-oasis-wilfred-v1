@@ -9,8 +9,10 @@ export async function getBookings() {
     // .select("*")
   
   const { data, error } = await supabase
-    .from('bookings')
-    .select("id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)");
+    .from("bookings")
+    .select(
+      "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)"
+    );
 
   // const { data, error } = await supabase
   //   .from("bookings")
